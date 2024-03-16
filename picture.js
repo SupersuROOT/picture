@@ -7,7 +7,7 @@
 
 [rewrite_local]
 
-^http:\/\/.*\.eyijiao\.com\/wechat\/inout!queryInoutDay\.action url script-response-body https://raw.githubusercontent.com/SupersuROOT/picture/main/picture.js
+^(https?:\/\/.*?)\.eyijiao\.com\/wechat\/inout!queryInoutDay\.action url script-response-body https://raw.githubusercontent.com/SupersuROOT/picture/main/picture.js
 
 [mitm]
 
