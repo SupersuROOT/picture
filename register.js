@@ -19,12 +19,14 @@ hostname = *.eyijiao.com
 const elementsWithVIf = document.querySelectorAll('[v-if]');
 const elementsWithVShow = document.querySelectorAll('[v-show]');
 
-// 移除所有 v-if 属性
+// 移除所有 v-if 属性并显示元素
 elementsWithVIf.forEach(element => {
     element.removeAttribute('v-if');
+    element.style.display = 'block';
 });
 
-// 移除所有 v-show 属性
+// 移除所有 v-show 属性并显示元素
 elementsWithVShow.forEach(element => {
     element.removeAttribute('v-show');
+    element.style.display = 'block';
 });
