@@ -18,8 +18,13 @@ hostname = *.eyijiao.com
 // show_register_and_identity_modal.js
 let body = $response.body;
 
-// 使用正则表达式替换v-if条件和identityModal变量
+// 使用正则表达式替换v-if条件
 body = body.replace(/v-if="isRegister"/g, '');
-body = body.replace(/v-model="identityModal"/g, 'v-model="true"');
+
+// 确保identityModal始终为true
+body = body.replace(/identityModal:\s*false/g, 'identityModal: true');
+
+// 确保identityModalCard始终为true
+body = body.replace(/identityModalCard:\s*false/g, 'identityModalCard: true');
 
 $done({ body });
