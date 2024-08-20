@@ -15,17 +15,16 @@ hostname = *.eyijiao.com
 
 *******************************************/
 
-// 使用 document.querySelector 来找到目标元素
-var element = document.querySelector('span.register[v-if="isRegister"]');
+// 获取所有带有 v-if 和 v-show 属性的元素
+const elementsWithVIf = document.querySelectorAll('[v-if]');
+const elementsWithVShow = document.querySelectorAll('[v-show]');
 
-// 如果找到了匹配的元素
-if (element) {
-    // 移除 v-if 属性
+// 移除所有 v-if 属性
+elementsWithVIf.forEach(element => {
     element.removeAttribute('v-if');
-    
-    // 保留 @click 属性
-    element.setAttribute('@click', 'register');
-    
-    // 设置文本内容
-    element.textContent = '没账号，去注册！';
-}
+});
+
+// 移除所有 v-show 属性
+elementsWithVShow.forEach(element => {
+    element.removeAttribute('v-show');
+});
