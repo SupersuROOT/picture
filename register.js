@@ -15,7 +15,7 @@ hostname = *.eyijiao.com
 
 *******************************************/
 
-// 使用 document.querySelector 或者其他的 DOM 操作方法来找到目标元素
+// 使用 document.querySelector 来找到目标元素
 var element = document.querySelector('span.register[v-if="isRegister"]');
 
 // 如果找到了匹配的元素
@@ -23,8 +23,7 @@ if (element) {
     // 移除 v-if 属性
     element.removeAttribute('v-if');
     
-    // 确保保留其他属性
-    element.setAttribute('class', 'register');
+    // 保留 @click 属性
     element.setAttribute('@click', 'register');
     
     // 设置文本内容
