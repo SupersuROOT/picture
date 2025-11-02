@@ -16,8 +16,11 @@ hostname = middle-school.china-qzxy.cn
 *******************************************/
 
 const modifyList = [
-  { id: 271, saveMoney: 50, giveMoney: 10000 },
+  { id: 271, saveMoney: 50, giveMoney: 20000 },
   { id: 272, saveMoney: 100, giveMoney: 20000 },
+  { id: 273, saveMoney: 1500, giveMoney: 20000 },
+  { id: 274, saveMoney: 1000, giveMoney: 20000 },
+  { id: 275, saveMoney: 10000, giveMoney: 20000 },
   // 可以继续添加更多
   // { id: 273, saveMoney: 150, giveMoney: 30000 },
 ];
