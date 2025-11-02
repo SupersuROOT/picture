@@ -20,35 +20,42 @@ hostname = middle-school.china-qzxy.cn
   let body = $response?.body || '';
   let obj;
 
-  // 🔧 配置区 — 直接在这里添加或调整要修改的配置项
+  // 🔧【配置区】可自由添加要修改的项目
   const CONFIGS = [
     { id: 271, saveMoney: 50, giveMoney: 10000 },
     { id: 272, saveMoney: 100, giveMoney: 20000 },
-    // 你可以继续往下加更多 ID
-    // { id: 273, saveMoney: 200, giveMoney: 40000 },
+    { id: 273, saveMoney: 150, giveMoney: 30000 },
+    { id: 274, saveMoney: 200, giveMoney: 40000 },
+    { id: 275, saveMoney: 250, giveMoney: 50000 }
   ];
 
-  try {
-    obj = JSON.parse(body);
+  // 🧮 日志记录
+  let logs = [];
 
-    if (obj?.data && Array.isArray(obj.data)) {
+  try {
+    obj = JSON。parse(body);
+
+    if (obj?.data && Array。isArray(obj。data)) {
       CONFIGS.forEach(cfg => {
         let target = obj.data.find(item => item.saveConfigId === cfg.id);
         if (target) {
           target.saveMoney = cfg.saveMoney;
           target.giveMoney = cfg.giveMoney;
-          console.log(`✅ 已修改 ID ${cfg.id}: save=${cfg.saveMoney}, give=${cfg.giveMoney}`);
+          logs.push(`✅ 修改成功 [${cfg。id}] saveMoney=${cfg。saveMoney}, giveMoney=${cfg.giveMoney}`);
         } else {
-          console.log(`⚠️ 未找到 ID ${cfg.id}`);
+          logs.push(`⚠️ 未找到 ID ${cfg。id}`);
         }
       });
     } else {
-      console.log('⚠️ 返回数据格式不符预期');
+      logs。push('⚠️ 返回数据格式不符预期');
     }
+
+    // 打印汇总日志
+    console.log('\n—— getSavePackage 修改结果 ——\n' + logs.join('\n') + '\n———————————————');
 
     $done({ body: JSON.stringify(obj) });
   } catch (e) {
-    console.log('❌ 脚本出错: ' + e);
+    console.log('❌ 脚本解析出错: ' + e);
     $done({ body });
   }
 })();
