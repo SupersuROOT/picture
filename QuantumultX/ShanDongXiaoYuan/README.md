@@ -7,6 +7,8 @@
 ## 默认净化内容
 
 - 首页功能入口只保留“运动”和“学习”；隐藏吃饭、鲜花、生活、品牌、商城、空间、搭子。
+- 关闭 `collegeWorksSwitch` 并将推荐动态接口返回为空，去除“校园新鲜事”。
+- 关闭 `mySchoolEnable`，尝试直接移除底栏“本校”；精准拦截奖池接口，去除“迎好运”及首页闪金币卡片。
 - 隐藏首页商品推荐位、首页横幅、广告弹窗、运动页活动弹窗和校园页横幅。
 - 关闭应用返回的广告总开关、开屏广告、聚合广告与商城开关。
 - 移除“省钱”动态分类、广告任务和外链拉新任务；保留跑步、计步等正常任务。
@@ -20,6 +22,8 @@
 2. 将 `ShanDongXiaoYuan.local.conf` 中 `[rewrite_local]` 下的规则合并到现有配置的同名段落；将 `hostname` 中的域名合并到现有 `[mitm]` 段落。不要在主配置里重复创建同名段落。
 3. 确认 Quantumult X 的 MITM 证书已安装并受信任，然后启用重写。
 4. 强制退出闪动校园后重新打开。若旧栏目仍在，清除应用缓存后再试。
+
+> “本校”有抓包中明确的服务端开关；“迎好运”由奖池接口动态下发。本规则会阻断其首页与奖池页配置。若旧底栏仍存在，通常是应用缓存，请先彻底退出应用并清除缓存。
 
 ## 极简模式
 
@@ -50,7 +54,11 @@ MINIMAL_MODE: true
 - `/run-front/api/home/activityEntry`
 - `/run-front/common/bottom-bar/redDot`
 - `/run-front/api/tasks/available/list`
+- `/run-front/api/works/recommend/list`
+- `/run-front/api/works/recommend/pool/list`
 - `/run-front/api/works/category/list`
 - `/run-front/api/user/cs/index`
+- `/run-front/api/jackpot/award/home`（精准拦截）
+- `/run-front/api/jackpot/award/lotteryPage`（精准拦截）
 
 脚本仅对 JSON 响应中已确认的字段做定点修改；解析失败或响应结构不符合预期时会原样放行。
